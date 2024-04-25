@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: service-registry-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-service-registry:v1
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-service-registry:v2
         ports:
         - containerPort: 8761
       imagePullSecrets: 

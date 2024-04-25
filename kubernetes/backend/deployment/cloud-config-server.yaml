@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cloud-config-server-container
-          image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-cloud-config-server:v1
+          image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-cloud-config-server:v2
           imagePullPolicy: Always
           ports:
             - containerPort: 9297       

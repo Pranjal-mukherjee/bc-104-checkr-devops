@@ -1,0 +1,46 @@
+name: BOOTCAMP104- Frontend deployment 
+run-name: Frontend Deployment update triggered by ${{ github.actor }}.
+on:
+  push:
+    branches:
+      - "deployment"
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend.yml'
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+        run:
+          working-directory: frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install --legacy-peer-deps
+      - name: Copy env and Build application
+        run: |
+         echo "${{secrets.FE_ENV}}" > .env
+         npm run build
+         cp -r public/assets build/
+
+      - name: Login to GitHub Container Registry
+        run: docker login --username ${{secrets.GHCR_USERNAME}} --password ${{secrets.GHCR_PAT}} ghcr.io 
+      - name: Build Docker Image
+        run:  docker build . --tag ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-frontend:v${{github.run_number}}
+      - name:  Push Docker Image to GHCR
+        run: docker push ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-frontend:v${{github.run_number}}

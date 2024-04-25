@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bc104-service-registry-deployment
+  labels:
+    type: registry
+    name: eureka
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-registry-label
+    spec:
+      containers:
+      - name: service-registry-container
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-service-registry:v1
+        ports:
+        - containerPort: 8761
+      imagePullSecrets: 
+      - name: ghcr-secret
+  selector:
+    matchLabels:
+      app: service-registry-label

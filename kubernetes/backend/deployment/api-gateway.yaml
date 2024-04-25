@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bc104-api-gateway-deployment
+  labels:
+    type: service
+    name: api-gateway
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-gateway-label
+    spec:
+      containers:
+      - name: api-gateway-container
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-api-gateway:v3
+        ports:
+        - containerPort: 9191
+        env:
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://service-registry-svc:8761/eureka/
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: api-gateway-svc
+      imagePullSecrets: 
+      - name: ghcr-secret
+  selector:
+    matchLabels:
+      app: api-gateway-label

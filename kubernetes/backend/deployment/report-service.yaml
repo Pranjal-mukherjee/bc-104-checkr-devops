@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bc104-report-service-deployment
+  labels:
+    type: service
+    name: report
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: report-service-label
+    spec:
+      containers:
+      - name: report-service-container
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-reports-services:v3
+        ports:
+        - containerPort: 9003
+        env:
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://service-registry-svc:8761/eureka/
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://3.147.8.88:31025/chekr
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: report-service-svc
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                  secretKeyRef:
+                      name:  database-secret
+                      key:  username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                  secretKeyRef:
+                      name:  database-secret
+                      key:  password
+            - name: SPRING_FLYWAY_ENABLED
+              value: "false"
+      imagePullSecrets: 
+      - name: ghcr-secret
+  selector:
+    matchLabels:
+      app: report-service-label

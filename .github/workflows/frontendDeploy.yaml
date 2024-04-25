@@ -6,7 +6,7 @@ on:
       - "deployment"
     paths:
       - 'frontend/**'
-      - '.github/workflows/frontend.yml'
+      - '.github/workflows/frontendDeploy.yml'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest

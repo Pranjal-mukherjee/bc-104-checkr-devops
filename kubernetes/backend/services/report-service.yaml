@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: report-service-svc
+spec:
+  ports:
+  - targetPort: 9003
+    port: 9003
+  selector:
+    app: report-service-label

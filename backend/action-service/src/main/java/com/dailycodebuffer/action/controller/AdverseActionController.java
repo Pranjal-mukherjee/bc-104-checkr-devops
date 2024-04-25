@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/action")
-@CrossOrigin(origins = {"http://localhost:3001","https://bc104-fe.fe-assignment.tk"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3001"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
 public class AdverseActionController {
     @Autowired
     private AdverseActionService adverseActionService;

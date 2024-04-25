@@ -30,7 +30,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/candidates")
-@CrossOrigin(origins = {"http://localhost:3001","https://bc104-fe.fe-assignment.tk"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3001"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
 public class CandidatesController {
 
     //test

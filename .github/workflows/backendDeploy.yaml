@@ -1,0 +1,50 @@
+name: BOOTCAMP104- Backend deployment
+run-name: Backend deployment triggered by ${{ github.actor }}.
+on:
+  push:
+    branches:
+      - deployment
+    paths:
+      - backend/**
+      - .github/workflows/backendDeploy.yaml
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        defaults:
+          run:
+            working-directory: backend/${{ matrix.services }}
+        strategy:
+            matrix:
+                services:
+                - cloud-config-server
+                - api-gateway
+                - action-service
+                - service-registry
+                - reports-services
+                - searches-services
+                - user-service
+                - candidates-service
+        steps:
+          - name: Checkout the code
+            uses: actions/checkout@v3
+            with:
+              fetch-depth: 0
+          - name: Setup Java
+            uses: actions/setup-java@v3
+            with:
+                distribution: "corretto"
+                java-version: "11"
+          - name: Cache Maven packages
+            uses: actions/cache@v1
+            with:
+              path: ~/.m2
+              key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+              restore-keys: ${{ runner.os }}-m2    
+          - name: Login to GitHub Container Registry
+            run: docker login --username ${{secrets.GHCR_USERNAME}} --password ${{secrets.GHCR_PAT}} ghcr.io 
+          - name: Build Docker Image
+            run:  docker build . --tag ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-backend-${{matrix.services}}:v${{github.run_number}}
+          - name:  Push Docker Image to GHCR
+            run: docker push ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-backend-${{matrix.services}}:v${{github.run_number}} 

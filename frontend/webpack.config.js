@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-
+const port = process.env.PORT || 3001;
 require('dotenv').config();
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: 'development',
@@ -56,11 +57,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
-    })
+    }),
+    new Dotenv(),
   ],
   devServer: {
-    host: process.env.HOST,
-    port: process.env.PORT,
+    host: "localhost",
+    port: port,
     historyApiFallback: true,
     open: true
   }

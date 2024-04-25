@@ -36,7 +36,7 @@ jobs:
         run: |
          echo "${{secrets.FE_ENV}}" > .env
          npm run build
-         cp -r public/assets build/
+         cp -r public/assests build/
 
       - name: Login to GitHub Container Registry
         run: docker login --username ${{secrets.GHCR_USERNAME}} --password ${{secrets.GHCR_PAT}} ghcr.io 

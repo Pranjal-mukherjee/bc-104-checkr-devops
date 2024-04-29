@@ -30,7 +30,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/candidates")
-@CrossOrigin(origins = {"http://localhost:3001","https://frontend-bc-checkr.play-nooax-ai-with.me/"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3001","https://frontend-bc-checkr.play-nooax-ai-with.me"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
 public class CandidatesController {
 
     //test

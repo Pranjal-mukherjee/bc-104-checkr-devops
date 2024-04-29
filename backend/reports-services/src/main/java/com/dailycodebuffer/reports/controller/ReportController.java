@@ -22,7 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reports")
-@CrossOrigin(origins = {"http://localhost:3001"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3001","https://frontend-bc-checkr.play-nooax-ai-with.me"},methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.PATCH})
 public class ReportController {
     @Autowired
     private ReportService reportService;

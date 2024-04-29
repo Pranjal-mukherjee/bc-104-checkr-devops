@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-frontend:v2
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-frontend:v3
         ports:
         - containerPort: 80
         env:

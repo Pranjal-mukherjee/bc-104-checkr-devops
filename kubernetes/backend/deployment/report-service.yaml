@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: report-service-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-reports-services:v3
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-reports-services:v4
         ports:
         - containerPort: 9003
         env:

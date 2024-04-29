@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: user-service-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-user-service:v3
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-user-service:v4
         ports:
         - containerPort: 8083
         env:

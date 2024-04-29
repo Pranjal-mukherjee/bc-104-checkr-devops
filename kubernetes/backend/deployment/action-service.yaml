@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: action-service-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-action-service:v3
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-action-service:v4
         ports:
         - containerPort: 9004
         env:

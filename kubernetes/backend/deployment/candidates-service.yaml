@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: candidates-service-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-candidates-service:v5
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-candidates-service:v6
         ports:
         - containerPort: 9001
         env:

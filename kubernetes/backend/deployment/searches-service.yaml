@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bc104-searches-service-deployment
+  name: bc104-searches-services-deployment
   labels:
     type: service
     name: searches
@@ -13,7 +13,7 @@ spec:
         app: searches-service-label
     spec:
       containers:
-      - name: searches-service-container
+      - name: searches-services-container
         image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-searches-services:v3
         ports:
         - containerPort: 9002

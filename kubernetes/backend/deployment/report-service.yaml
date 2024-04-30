@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bc104-report-service-deployment
+  name: bc104-reports-services-deployment
   labels:
     type: service
     name: report
@@ -13,7 +13,7 @@ spec:
         app: report-service-label
     spec:
       containers:
-      - name: report-service-container
+      - name: reports-services-container
         image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-reports-services:v4
         ports:
         - containerPort: 9003

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-gateway-container
-        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-api-gateway:v5
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-api-gateway:v7
         ports:
         - containerPort: 9191
         env:

@@ -44,3 +44,13 @@ jobs:
         run:  docker build . --tag ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-frontend:v${{github.run_number}}
       - name:  Push Docker Image to GHCR
         run: docker push ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-frontend:v${{github.run_number}}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.EKS_CLUSTER_REGION }}
+      - name: Add EKS Cluster and deploy the application
+        run: |
+          aws eks update-kubeconfig --name  ${{secrets.EKS_CLUSTER_NAME}}  --region ${{secrets.EKS_CLUSTER_REGION}}
+          kubectl set image deployment/bc104-frontend-deployment frontend-container=ghcr.io/${{secrets.GHCR_USERNAME}}/bootcamp104-frontend:v${{github.run_number}}

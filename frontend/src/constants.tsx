@@ -556,9 +556,4 @@ export const LogoutConstants: any = {
 };
 
 
-export const BASE_URl = "https://bc104-ms.fe-assignment.tk";
-export const BASE_URl_BACKEND = "https://bc104-be.fe-assignment.tk";
-
-export const DOMAIn_ID = "dev-zjir0u40iv2ujkj4.us.auth0.com";
-export const CLIENT_ID = "BKJ8ySCVfP9XjbS8CpTR6OmVQBxAQOk0";
 

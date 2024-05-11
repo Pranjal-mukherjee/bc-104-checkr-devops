@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bc104-action-service-deployment
+  labels:
+    type: service
+    name: action
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: action-service-label
+    spec:
+      containers:
+      - name: action-service-container
+        image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-action-service:v4
+        ports:
+        - containerPort: 9004
+        env:
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://service-registry-svc:8761/eureka/
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://3.147.8.88:31025/chekr
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: action-service-svc
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                  secretKeyRef:
+                      name:  database-secret
+                      key:  username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                  secretKeyRef:
+                      name:  database-secret
+                      key:  password
+            - name: SPRING_FLYWAY_ENABLED
+              value: "false"
+      imagePullSecrets: 
+      - name: ghcr-secret
+  selector:
+    matchLabels:
+      app: action-service-label

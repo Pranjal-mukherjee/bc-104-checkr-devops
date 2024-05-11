@@ -63,12 +63,14 @@ public class CandidatesService {
         // Fetch candidates with pagination
         Pageable pageable = PageRequest.of(offset / limit, limit);
         Page<Candidates> candidatePage = candidatesRepository.findAll(pageable);
+        System.out.println("page," +  candidatePage);
         List<Candidates> candidatesList = candidatePage.getContent(); // You need to implement this method
-
+System.out.println("list"  + candidatesList);
         for (Candidates candidate : candidatesList) {
             ResponseTemplateVO vo = new ResponseTemplateVO();
             Report report = restTemplate.getForObject("http://REPORTS-SERVICE/reports/" + candidate.getId(), Report.class);
-
+           System.out.println("candiate" + candidate);
+           System.out.println("report:" + report);
             vo.setCandidates(candidate);
             vo.setReport(report);
 

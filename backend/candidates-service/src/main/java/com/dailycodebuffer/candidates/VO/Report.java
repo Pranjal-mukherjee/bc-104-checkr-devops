@@ -15,7 +15,6 @@ public class Report {
     private int id;
     private Status status;
     private Adjudication adjudication;
-
     private String packageName;
     private LocalDateTime createdAt;
     private LocalDateTime completedDate;

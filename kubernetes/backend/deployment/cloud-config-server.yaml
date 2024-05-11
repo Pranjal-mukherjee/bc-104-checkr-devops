@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bc104-cloud-config-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-config-label
+  template:
+    metadata:
+      labels:
+        app: cloud-config-label
+    spec:
+      containers:
+        - name: cloud-config-server-container
+          image: ghcr.io/pranjal-mukherjee/bootcamp104-backend-cloud-config-server:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9297       
+          env:
+
+            - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
+              value: https://github.com/Pranjal-mukherjee/deployment-config-server/
+           
+      
+      imagePullSecrets:
+        - name: ghcr-secret
